@@ -3,9 +3,13 @@ name: refresh-snapshots
 # 05:30 UTC = 11:00 AM IST. GitHub often delays scheduled runs by 10-30 min;
 # that is fine here, the BigQuery scan quota resets at 00:00 IST so the whole
 # morning has budget. Only ONE scheduler may run this -- see tools/README note.
+# PAUSED 2026-09-29: the tracker is de-lived, so the daily cron is commented
+# out to stop spending the shared Metabase/BigQuery scan quota every morning
+# while nobody is reading the output. Uncomment the two schedule lines to
+# resume. Manual runs still work via workflow_dispatch.
 on:
-  schedule:
-    - cron: '30 5 * * *'
+  # schedule:
+  #   - cron: '30 5 * * *'
   workflow_dispatch:
 
 concurrency:
